@@ -56,7 +56,7 @@ namespace BookApi.Controllers
             {
                 var data = mapper.Map<Auther>(autherVM);
                var result = await auther.Edit(id, data);
-                return Ok();
+                return  Ok();
             }
             catch (Exception)
             {
