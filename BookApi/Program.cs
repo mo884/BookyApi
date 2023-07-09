@@ -4,17 +4,21 @@ using BookApi.Mapper;
 using BookApi.Reposoratory;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using System.Text.Json.Serialization;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(x =>
+                x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/
 // //Connection 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 //Add Scope
 builder.Services.AddScoped(typeof(IAutherRep), typeof(AutherRep));
+builder.Services.AddScoped(typeof(IBookRep), typeof(BookRep));
 
 //Auto Mapper
 builder.Services.AddAutoMapper(x => x.AddProfile(new Imapper()));
@@ -76,11 +80,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
 app.UseHttpsRedirection();
 app.UseCors(c => c.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();

@@ -11,6 +11,8 @@ namespace BookApi.Mapper
             CreateMap<Auther, AutherVM>();
             CreateMap<AutherVM, Auther>();
 
+            CreateMap<Book, BookVM>();
+            CreateMap<BookVM, Book>();
         }
     }
 }
