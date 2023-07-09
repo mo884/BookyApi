@@ -6,8 +6,8 @@ namespace BookApi.Interface
     {
         Task<IEnumerable<Auther>> GetAll();
         Task<Auther> GetByID(int id);
-        Task Edit(int id,Auther auther);
-        Task  Delete(int id);
+        Task <Auther> Edit(int id,Auther auther);
+        Task Delete(int id);
         Task Create(Auther auther);
     }
 }

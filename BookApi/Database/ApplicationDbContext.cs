@@ -11,6 +11,6 @@ namespace BookApi.Database
         }
         public DbSet<Book> Books { get; set; }
         public DbSet<Auther> Authers { get; set; }
-
+        public DbSet<Department> Departments { get; set; }
     }
 }

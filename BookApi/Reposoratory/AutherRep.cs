@@ -20,17 +20,25 @@ namespace BookApi.Reposoratory
 
         public async Task Delete(int id)
         {
-            var data = await Db.Authers.Where(a => a.ID == id).FirstOrDefaultAsync();
-            Db.Authers.Remove(data);
-            await Db.SaveChangesAsync();
+            var data = await Db.Authers.Where(a => a.ID == id).Include("books").FirstOrDefaultAsync();
+            
+                data.IsActive = !data.IsActive;
+                await Db.SaveChangesAsync();
+                
+            
         }
 
-        public async Task Edit(int id,Auther auther)
+        public async Task<Auther> Edit(int id,Auther auther)
         {
-            var data = await Db.Authers.Where(a => a.ID == id).FirstOrDefaultAsync();
-            data.Name = auther.Name;
+            var data = await Db.Authers.Where(a => a.ID == id).Include("books").FirstOrDefaultAsync();
+            if (data != null)
+            {
+                data.Name = auther.Name;
             data.Address = auther.Address;
             await Db.SaveChangesAsync();
+            return data;
+            }
+            return null;
         }
 
         public async Task<IEnumerable<Auther>> GetAll()
@@ -40,7 +48,7 @@ namespace BookApi.Reposoratory
 
         public async Task<Auther> GetByID(int id)
         {
-            return await Db.Authers.Where(a => a.ID == id).FirstOrDefaultAsync();
+            return await Db.Authers.Where(a => a.ID == id).Include("books").FirstOrDefaultAsync();
         }
     }
 }

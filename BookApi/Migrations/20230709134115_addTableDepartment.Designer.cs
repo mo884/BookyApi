@@ -3,6 +3,7 @@ using BookApi.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookApi.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230709134115_addTableDepartment")]
+    partial class addTableDepartment
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -42,7 +45,7 @@ namespace BookApi.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Auther", (string)null);
+                    b.ToTable("Auther");
                 });
 
             modelBuilder.Entity("BookApi.Models.Book", b =>
@@ -81,7 +84,7 @@ namespace BookApi.Migrations
 
                     b.HasIndex("DepartmentID");
 
-                    b.ToTable("Book", (string)null);
+                    b.ToTable("Book");
                 });
 
             modelBuilder.Entity("BookApi.Models.Department", b =>
@@ -101,7 +104,7 @@ namespace BookApi.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Departments", (string)null);
+                    b.ToTable("Departments");
                 });
 
             modelBuilder.Entity("BookApi.Models.Book", b =>

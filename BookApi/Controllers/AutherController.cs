@@ -55,16 +55,29 @@ namespace BookApi.Controllers
             try
             {
                 var data = mapper.Map<Auther>(autherVM);
-                await auther.Edit(id, data);
+               var result = await auther.Edit(id, data);
                 return Ok();
             }
             catch (Exception)
             {
-
                 return BadRequest();
             }
 
         }
+        [HttpPost("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            try
+            {
+                await auther.Delete(id);
+                return Ok();
+            }
+            catch (Exception)
+            {
+                return Ok("Bad Request");
 
+            }
+
+        }
     }
 }

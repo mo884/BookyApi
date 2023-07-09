@@ -11,7 +11,8 @@ namespace BookApi.Models
         [Required]
         public string Name { get; set; }
         public string Address { get; set; }
-        public List<Book> books { get; set; }
+        public bool IsActive { get; set; }
+        public List<Book>? books { get; set; }
 
     }
 }

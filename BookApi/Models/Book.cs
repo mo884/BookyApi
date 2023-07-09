@@ -14,6 +14,14 @@ namespace BookApi.Models
         public string Description { get; set; }
         [Required]
         public decimal Price { get; set; }
+        public bool Deleted { get; set; }
+        [ForeignKey("department")]
+        public int DepartmentID { get; set; }
+        public Department? department { get; set; }
+
+        [ForeignKey("Auther")]
+        public int AutherID { get; set; }
+        public Auther? Auther { get; set; }
 
     }
 }
