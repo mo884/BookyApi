@@ -19,6 +19,7 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 //Add Scope
 builder.Services.AddScoped(typeof(IAutherRep), typeof(AutherRep));
 builder.Services.AddScoped(typeof(IBookRep), typeof(BookRep));
+builder.Services.AddScoped(typeof(IDepartmentRep), typeof(DepartmentRep));
 
 //Auto Mapper
 builder.Services.AddAutoMapper(x => x.AddProfile(new Imapper()));

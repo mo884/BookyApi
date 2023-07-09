@@ -13,6 +13,9 @@ namespace BookApi.Mapper
 
             CreateMap<Book, BookVM>();
             CreateMap<BookVM, Book>();
+
+            CreateMap<Department, DepartmentVM>();
+            CreateMap<DepartmentVM, Department>();
         }
     }
 }
